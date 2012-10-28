@@ -1,12 +1,12 @@
 Summary:	Cross-platform software utility library
 Name:		glib
-Version:	2.34.0
+Version:	2.34.1
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	http://download.gnome.org/sources/glib/2.34/%{name}-%{version}.tar.xz
-# Source0-md5:	d80aef668f981b5dcf157633d13081c0
+# Source0-md5:	ee779493b083be9348a841e0a51f1b27
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-warn_about_bad_dconf_paths.patch
 URL:		http://www.gtk.org/
@@ -154,15 +154,15 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,be@latin,en@shaw}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post	-p /usr/sbin/ldconfig
+%postun	-p /usr/sbin/ldconfig
 
 %post	gio
 /sbin/ldconfig
 umask 022
 %{_bindir}/gio-querymodules %{_libdir}/gio/modules ||:
 
-%postun	gio -p /sbin/ldconfig
+%postun	gio -p /usr/sbin/ldconfig
 
 %files -f glib20.lang
 %defattr(644,root,root,755)
