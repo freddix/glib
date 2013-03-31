@@ -4,7 +4,7 @@ diff -aurN glib-2.7.1.orig/glib/Makefile.am glib-2.7.1/glib/Makefile.am
 @@ -187,11 +187,6 @@
  	gprintf.h
  
- install-data-local: install-ms-lib install-def-file
+ install-data-local: install-ms-lib
 -	@if test -f $(glibincludedir)/glist.h ; then					\
 -	  echo "*** Old headers found in $(glibincludedir). You should remove the" ;	\
 -	  echo "*** contents of this directory and type 'make install' again." ;	\

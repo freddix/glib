@@ -1,12 +1,12 @@
 Summary:	Cross-platform software utility library
 Name:		glib
-Version:	2.34.3
+Version:	2.36.0
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
-Source0:	http://download.gnome.org/sources/glib/2.34/%{name}-%{version}.tar.xz
-# Source0-md5:	a4ca31e258273c3761e3de2edd607661
+Source0:	http://download.gnome.org/sources/glib/2.36/%{name}-%{version}.tar.xz
+# Source0-md5:	2047dff287473450593edecb18f79c17
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-warn_about_bad_dconf_paths.patch
 URL:		http://www.gtk.org/
@@ -143,8 +143,8 @@ rm -rf $RPM_BUILD_ROOT
 	m4datadir=%{_aclocaldir}	\
 	pkgconfigdir=%{_pkgconfigdir}
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,be@latin,en@shaw}
-%{?with_fam:rm -f $RPM_BUILD_ROOT%{_libdir}/gio/modules/*.la}
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,be@latin,en@shaw}
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/glib-2.0/codegen/*.py
 
 %find_lang glib20 --with-gnome
 
@@ -158,7 +158,7 @@ rm -rf $RPM_BUILD_ROOT
 %postun	-p /usr/sbin/ldconfig
 
 %post	gio
-/sbin/ldconfig
+/usr/sbin/ldconfig
 umask 022
 %{_bindir}/gio-querymodules %{_libdir}/gio/modules ||:
 
@@ -199,7 +199,6 @@ umask 022
 
 %{_libdir}/glib-2.0
 %dir %{_datadir}/glib-2.0/gettext
-%attr(755,root,root) %{_datadir}/glib-2.0/gettext/mkinstalldirs
 %{_datadir}/glib-2.0/gdb
 %{_datadir}/glib-2.0/gettext/po
 %{_datadir}/glib-2.0/schemas/gschema.dtd
@@ -210,10 +209,9 @@ umask 022
 %{_pkgconfigdir}/gobject-2.0.pc
 %{_pkgconfigdir}/gthread-2.0.pc
 
-%dir %{_libdir}/gdbus-2.0
-%dir %{_libdir}/gdbus-2.0/codegen
 %attr(755,root,root) %{_bindir}/gdbus-codegen
-%{_libdir}/gdbus-2.0/codegen/*.py[co]
+%dir %{_datadir}/glib-2.0/codegen
+%{_datadir}/glib-2.0/codegen/*.py[co]
 %{_mandir}/man1/gdbus-codegen.1*
 
 %{_includedir}/glib-2.0
@@ -235,6 +233,7 @@ umask 022
 
 %files apidocs
 %defattr(644,root,root,755)
+%{_gtkdocdir}/gdbus-object-manager-example
 %{_gtkdocdir}/glib
 %{_gtkdocdir}/gobject
 
