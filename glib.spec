@@ -1,12 +1,12 @@
 Summary:	Cross-platform software utility library
 Name:		glib
-Version:	2.36.4
-Release:	1
+Version:	2.38.0
+Release:	2
 Epoch:		1
 License:	LGPL
 Group:		Libraries
-Source0:	http://download.gnome.org/sources/glib/2.36/%{name}-%{version}.tar.xz
-# Source0-md5:	2f4b15f7ef43d8702d067ab987bf7aba
+Source0:	http://download.gnome.org/sources/glib/2.38/%{name}-%{version}.tar.xz
+# Source0-md5:	c50d2805a76763e9b4cc4385d4ea215d
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-warn_about_bad_dconf_paths.patch
 URL:		http://www.gtk.org/
@@ -192,10 +192,6 @@ umask 022
 %attr(755,root,root) %{_libdir}/libgmodule-2.0.so
 %attr(755,root,root) %{_libdir}/libgobject-2.0.so
 %attr(755,root,root) %{_libdir}/libgthread-2.0.so
-%{_libdir}/libglib-2.0.la
-%{_libdir}/libgmodule-2.0.la
-%{_libdir}/libgobject-2.0.la
-%{_libdir}/libgthread-2.0.la
 
 %{_libdir}/glib-2.0
 %dir %{_datadir}/glib-2.0/gettext
@@ -266,7 +262,6 @@ umask 022
 %attr(755,root,root) %{_bindir}/gresource
 %attr(755,root,root) %{_libdir}/libgio-2.0.so
 %{_includedir}/gio-unix-2.0
-%{_libdir}/libgio-2.0.la
 %{_pkgconfigdir}/gio-2.0.pc
 %{_pkgconfigdir}/gio-unix-2.0.pc
 %{_mandir}/man1/glib-compile-resources.1*
