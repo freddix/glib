@@ -1,12 +1,12 @@
 Summary:	Cross-platform software utility library
 Name:		glib
-Version:	2.38.2
+Version:	2.40.0
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
-Source0:	http://download.gnome.org/sources/glib/2.38/%{name}-%{version}.tar.xz
-# Source0-md5:	26d1d08e478fc48c181ca8be44f5b69f
+Source0:	http://download.gnome.org/sources/glib/2.40/%{name}-%{version}.tar.xz
+# Source0-md5:	05fb7cb17eacbc718e90366a1eae60d9
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-warn_about_bad_dconf_paths.patch
 URL:		http://www.gtk.org/
@@ -145,6 +145,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} -r $RPM_BUILD_ROOT%{_datadir}/locale/{ca@valencia,be@latin,en@shaw}
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/glib-2.0/codegen/*.py
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %find_lang glib20 --with-gnome
 
@@ -244,9 +245,11 @@ umask 022
 %dir %{_libdir}/gio/modules
 %ghost %{_libdir}/gio/modules/giomodule.cache
 %attr(755,root,root) %{_bindir}/gio-querymodules
+%attr(755,root,root) %{_bindir}/gapplication
 %attr(755,root,root) %ghost %{_libdir}/libgio-2.0.so.?
 %attr(755,root,root) %{_libdir}/libgio-2.0.so.*.*.*
 %{_mandir}/man1/gio-querymodules.1*
+%{_mandir}/man1/gapplication.1*
 
 %files gio-gsettings
 %defattr(644,root,root,755)
