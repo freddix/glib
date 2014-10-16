@@ -1,12 +1,12 @@
 Summary:	Cross-platform software utility library
 Name:		glib
-Version:	2.40.0
-Release:	2
+Version:	2.42.0
+Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
-Source0:	http://download.gnome.org/sources/glib/2.40/%{name}-%{version}.tar.xz
-# Source0-md5:	05fb7cb17eacbc718e90366a1eae60d9
+Source0:	http://download.gnome.org/sources/glib/2.42/%{name}-%{version}.tar.xz
+# Source0-md5:	71af99768063ac24033ac738e2832740
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-warn_about_bad_dconf_paths.patch
 URL:		http://www.gtk.org/
@@ -76,7 +76,6 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 %description gio
 Glib GIO library.
 
-
 %package gio-gsettings
 Summary:	GSettings configuration tool
 Group:		Applications
@@ -110,6 +109,14 @@ Requires:	gtk-doc-common
 
 %description gio-apidocs
 Glib GIO API documetation.
+
+%package -n bash-completion-%{name}
+Summary:	BASH auto-complete site functions
+Group:		Documentation
+Requires:	bash
+
+%description -n bash-completion-%{name}
+BASH auto-complete site functions.
 
 %prep
 %setup -q
@@ -277,4 +284,8 @@ umask 022
 %files gio-apidocs
 %defattr(644,root,root,755)
 %{_gtkdocdir}/gio
+
+%files -n bash-completion-%{name}
+%attr(755,root,root)
+%{_datadir}/bash-completion/completions/*
 
